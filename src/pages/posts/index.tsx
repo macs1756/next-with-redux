@@ -4,12 +4,12 @@ import { useEffect } from "react";
 
 function Posts() {
 
-  useEffect(()=>{
+  useEffect(() => {
     fetch('http://localhost:1337/api/reviews?populate=*')
     .then(response => response.json())
     .then(data => console.log(data))
     .catch(error => console.error('Error fetching data:', error));
-  },[])
+  }, []);
 
   return (
     <div>Give posts</div>
