@@ -23,6 +23,6 @@ export interface IPost {
 }
 
 export interface IpostPageProps {
-  posts: IPost[]
+  data: IPost[]
 }
 

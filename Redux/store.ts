@@ -15,7 +15,6 @@ const persistConfig = {
 
 const persistedFavoriteReducer = persistReducer(persistConfig, favoriteReducer)
 
-
 export const store = configureStore({
   reducer: {
     [backend.reducerPath]: backend.reducer,

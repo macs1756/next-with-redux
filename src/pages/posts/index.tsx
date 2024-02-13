@@ -1,10 +1,15 @@
 import { backend } from "@/RTK_Query";
 import { IpostPageProps } from "@/Types";
+import { useEffect } from "react";
 
-function Posts({posts}: IpostPageProps ) {
+function Posts() {
 
-  console.log(posts);
-  
+  useEffect(()=>{
+    fetch('http://localhost:1337/api/reviews?populate=*')
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error fetching data:', error));
+  },[])
 
   return (
     <div>Give posts</div>
@@ -13,16 +18,18 @@ function Posts({posts}: IpostPageProps ) {
 
 export default Posts;
 
+// export async function getServerSideProps() {
+//   try {
+//     // Отримання даних з бекенду асинхронно
+//     const { isError, isLoading, data} = await backend.useGetPostsQuery(null);
 
-export async function getServerSideProps() {
-  try {
+//     console.log(data, isLoading);
     
-    const {isError, isLoading, data:posts} = backend.useGetPostsQuery(null)
-  
-    return { props: { posts } };
-
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    return { props: { data: null } };
-  }
-}
+//     // Повернення даних як властивості props
+//     return { props: { data } };
+//   } catch (error) {
+//     console.error('Error fetching data:', error);
+//     // У разі помилки повертаємо null як дані
+//     return { props: { posts: null } };
+//   }
+// }
